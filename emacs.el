@@ -133,6 +133,16 @@
 ;; Tab is evil.
 (setq-default indent-tabs-mode nil)
 
+;;Key bindings
+(global-unset-key (kbd "M-h"))
+(global-unset-key (kbd "M-j"))
+(global-unset-key (kbd "M-k"))
+(global-unset-key (kbd "M-l"))
+(global-set-key (kbd "M-h") 'backward-char)
+(global-set-key (kbd "M-j") 'next-line)
+(global-set-key (kbd "M-k") 'previous-line)
+(global-set-key (kbd "M-l") 'forward-char)
+
 ;;(autoload 'php-mode "php-mode" "Major mode for editing php code." t)
 ;;(add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
 ;;(add-to-list 'auto-mode-alist '("\\.inc$" . php-mode))
