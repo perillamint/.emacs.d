@@ -1,3 +1,6 @@
 [submodule "racer"]
 	path = racer
 	url = https://github.com/phildawes/racer.git
+[submodule "lfe"]
+	path = lfe
+	url = https://github.com/lfe/lfe.git
