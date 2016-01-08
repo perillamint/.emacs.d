@@ -1,4 +1,5 @@
 (defvar racer-home "~/.emacs.d/racer")
+(defvar lfe-home "~/.emacs.d/lfe")
 (setq racer-rust-src-path "<path-to-rust-srcdir>/src/")
 (setq racer-cmd (concat racer-home "/target/release/racer"))
 (setq tramp-default-method "ssh")
@@ -6,14 +7,31 @@
 (setq-default tab-width 4)
 
 (add-to-list 'load-path (concat racer-home "/editors"))
+(add-to-list 'load-path (concat lfe-home "/emacs"))
+
+;;Get CAcerts file and set tls-program
+(let ((trustfile
+       (replace-regexp-in-string
+        "\\\\" "/"
+        (replace-regexp-in-string
+         "\n" ""
+         (shell-command-to-string "python -m certifi")))))
+  (setq tls-program
+        (list
+         (format "gnutls-cli%s --x509cafile %s -p %%p %%h"
+                 (if (eq window-system 'w32) ".exe" "") trustfile))))
 
 (require 'package)
 (package-initialize)
-(push '("marmalade" . "http://marmalade-repo.org/packages/")
+(push '("marmalade" . "https://marmalade-repo.org/packages/")
       package-archives)
 (push '("melpa" . "http://melpa.milkbox.net/packages/")
       package-archives)
 
+;;Disable splash
+(setq inhibit-splash-screen t)
+
+(load "~/.emacs.d/linuxkern.el")
 ;;Common lisp
 ;;(require 'cl)
 
@@ -111,6 +129,9 @@
 
 (req-package-finish)
 
+;;LFE mode
+(require 'lfe-start)
+
 ;;Built-in modules
 
 ;;html-mode
@@ -142,6 +163,9 @@
 (global-set-key (kbd "M-j") 'next-line)
 (global-set-key (kbd "M-k") 'previous-line)
 (global-set-key (kbd "M-l") 'forward-char)
+
+;;Custom compile command.
+(global-set-key (kbd "<f5>") 'compile)
 
 ;;(autoload 'php-mode "php-mode" "Major mode for editing php code." t)
 ;;(add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
