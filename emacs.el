@@ -61,8 +61,8 @@
 
 ;;Tengwar fallback
 
-;;Workspace-detection function
-(defun is-office-machine () (string= system-name "pmint-opengen.opengen.com"))
+;;Workspace-detection function -- Office machine is Nimrodel.
+(defun is-office-machine () (string= system-name "nimrodel.gentoo.moe"))
 
 ;;Download all packages from firstrun
 (setq use-package-always-ensure t)
