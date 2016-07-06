@@ -108,10 +108,7 @@
 
              (setq tabbar-buffer-groups-function 'my-tabbar-buffer-groups))
 
-(req-package js2-mode
-  :config
-  (setq js2-include-node-externs true)
-  (setq js2-external-variable (t (:foreground "tan"))))
+(req-package js2-mode)
 
 (req-package web-mode
              :config
