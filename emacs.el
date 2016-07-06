@@ -8,6 +8,7 @@
 
 (add-to-list 'load-path (concat racer-home "/editors"))
 (add-to-list 'load-path (concat lfe-home "/emacs"))
+(add-to-list 'load-path "~/.emacs.d/js-doc")
 
 ;;Get CAcerts file and set tls-program
 (let ((trustfile
@@ -23,10 +24,8 @@
 
 (require 'package)
 (package-initialize)
-(push '("marmalade" . "https://marmalade-repo.org/packages/")
-      package-archives)
-(push '("melpa" . "http://melpa.milkbox.net/packages/")
-      package-archives)
+(add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages"))
 
 ;;Disable splash
 (setq inhibit-splash-screen t)
@@ -109,6 +108,11 @@
 
              (setq tabbar-buffer-groups-function 'my-tabbar-buffer-groups))
 
+(req-package js2-mode
+  :config
+  (setq js2-include-node-externs true)
+  (setq js2-external-variable (t (:foreground "tan"))))
+
 (req-package web-mode
              :config
              (add-to-list 'auto-mode-alist '("\\.php$" . web-mode))
@@ -127,6 +131,13 @@
 (req-package flycheck-rust
              :require (flycheck rust-mode racer))
 
+(req-package auto-complete)
+
+(req-package yasnippet
+  :config
+  (yas/initialize)
+  (add-to-list 'ac-sources 'ac-source-yasnippet))
+
 (req-package-finish)
 
 ;;LFE mode
@@ -140,19 +151,45 @@
           (lambda ()
             (set (make-local-variable 'sgml-basic-offset) 4)))
 
-;;js-mode
-(add-to-list 'auto-mode-alist '("\\.\\(js\\|json\\)$" . js-mode))
+;;js2-mode
+(add-to-list 'auto-mode-alist '("\\.\\(js\\|json\\)$" . js2-mode))
 
 (if (is-office-machine)
-    (setq js-indent-level 2) (setq js-indent-level 4))
+    (setq js-indent-level 4) (setq js-indent-level 4))
 
 ;;Javascript flycheck lint
 (add-hook 'js-mode-hook
           (lambda () (flycheck-mode t)))
 
+(require 'js-doc)
+
+(setq js-doc-mail-address (if (is-office-machine)
+                              "yhban@gentoo.moe"
+                            "perillamint@gentoo.moe"))
+
+(setq js-doc-author (format (if (is-office-machine)
+                                "Yong-hyu, ban <%s>"
+                              "perillamint <%s>") js-doc-mail-address))
+
+(add-hook 'js-mode-hook
+          #'(lambda ()
+              (define-key js-mode-map "\C-ci" 'js-doc-insert-function-doc)
+              (define-key js-mode-map "@" 'js-doc-insert-tag)))
+
+;;TODO: fill this.
+(setq js-doc-url "")
+(setq js-doc-license "")
+
 ;;common configs
 ;; Tab is evil.
 (setq-default indent-tabs-mode nil)
+
+;;Auto-complete config
+(require 'auto-complete-config)
+
+(global-auto-complete-mode t)
+(setq ac-auto-start 2)
+(setq ac-ignore-case nil)
 
 ;;Key bindings
 (global-unset-key (kbd "M-h"))
