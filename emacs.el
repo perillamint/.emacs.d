@@ -114,7 +114,8 @@
 (req-package web-mode
              :config
              (add-to-list 'auto-mode-alist '("\\.php$" . web-mode))
-             (add-to-list 'auto-mode-alist '("\\.inc$" . web-mode)))
+             (add-to-list 'auto-mode-alist '("\\.inc$" . web-mode))
+             (add-to-list 'auto-mode-alist '("\\.jsp$" . web-mode)))
 
 (req-package nasm-mode
              :config
