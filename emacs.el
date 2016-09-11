@@ -9,6 +9,7 @@
 (add-to-list 'load-path (concat racer-home "/editors"))
 (add-to-list 'load-path (concat lfe-home "/emacs"))
 (add-to-list 'load-path "~/.emacs.d/js-doc")
+;;(add-to-list 'load-path "~/.emacs.d/lib")
 
 ;;Get CAcerts file and set tls-program
 (let ((trustfile
@@ -115,7 +116,8 @@
 (req-package web-mode
              :config
              (add-to-list 'auto-mode-alist '("\\.php$" . web-mode))
-             (add-to-list 'auto-mode-alist '("\\.inc$" . web-mode)))
+             (add-to-list 'auto-mode-alist '("\\.inc$" . web-mode))
+             (add-to-list 'auto-mode-alist '("\\.jsp$" . web-mode)))
 
 (req-package nasm-mode
              :config
@@ -129,6 +131,12 @@
 (req-package flycheck)
 (req-package flycheck-rust
              :require (flycheck rust-mode racer))
+
+(req-package lua-mode
+  :require (flymake-lua company company-lua)
+  :config
+  (add-to-list 'company-backends 'company-lua)
+  (add-hook 'lua-mode-hook 'flymake-lua-load))
 
 (req-package auto-complete)
 
