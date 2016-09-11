@@ -73,7 +73,9 @@
 
 (req-package twittering-mode
              :config
-             (setq twittering-use-master-password t))
+             (setq twittering-use-master-password t)
+             (setq twittering-private-info-file "~/.emacs.d/twittering-mode.gpg")
+             (load "~/.emacs.d/twittering-official-app.el"))
 
 ;;(req-package evernote-mode
 ;;             :config
