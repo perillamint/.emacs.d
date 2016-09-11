@@ -40,3 +40,6 @@ tramp
 /ac-comphist.dat
 
 /var
+
+# Credential files
+/twittering-mode.gpg
