@@ -7,3 +7,6 @@
 [submodule "js-doc"]
 	path = js-doc
 	url = https://github.com/mooz/js-doc.git
+[submodule "PG"]
+	path = PG
+	url = https://github.com/ProofGeneral/PG
