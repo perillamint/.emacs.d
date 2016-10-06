@@ -10,6 +10,3 @@
 [submodule "PG"]
 	path = PG
 	url = https://github.com/ProofGeneral/PG
-[submodule "emacs-color-theme-solarized"]
-	path = emacs-color-theme-solarized
-	url = https://github.com/sellout/emacs-color-theme-solarized.git
