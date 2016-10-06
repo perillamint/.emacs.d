@@ -10,3 +10,6 @@
 [submodule "PG"]
 	path = PG
 	url = https://github.com/ProofGeneral/PG
+[submodule "emacs-open-color-theme"]
+	path = emacs-open-color-theme
+	url = https://github.com/perillamint/emacs-open-color-theme.git
