@@ -1,5 +1,6 @@
-(defvar racer-home "~/.emacs.d/racer")
-(defvar lfe-home "~/.emacs.d/lfe")
+(defvar emacs-home "~/.emacs.d")
+(defvar racer-home (concat emacs-home "/racer"))
+(defvar lfe-home (concat emacs-home "/lfe"))
 (setq racer-rust-src-path "<path-to-rust-srcdir>/src/")
 (setq racer-cmd (concat racer-home "/target/release/racer"))
 (setq tramp-default-method "ssh")
@@ -8,8 +9,13 @@
 
 (add-to-list 'load-path (concat racer-home "/editors"))
 (add-to-list 'load-path (concat lfe-home "/emacs"))
-(add-to-list 'load-path "~/.emacs.d/js-doc")
-;;(add-to-list 'load-path "~/.emacs.d/lib")
+(add-to-list 'load-path (concat emacs-home "/PG/generic"))
+(add-to-list 'load-path (concat emacs-home "/js-doc"))
+;;(add-to-list 'load-path (concat emacs-home "/lib"))
+
+;;Theme
+(add-to-list 'custom-theme-load-path (concat emacs-home
+                                             "/emacs-color-theme-solarized"))
 
 ;;Get CAcerts file and set tls-program
 (let ((trustfile
@@ -31,7 +37,7 @@
 ;;Disable splash
 (setq inhibit-splash-screen t)
 
-(load "~/.emacs.d/linuxkern.el")
+(load (concat emacs-home "/linuxkern.el"))
 ;;Common lisp
 ;;(require 'cl)
 
@@ -45,7 +51,7 @@
 ;;Default font - Source Code Pro
 (set-face-attribute 'default nil
                     :family "Source Code Pro"
-                    :height 100
+                    :height 110
                     :weight 'light
                     :width 'normal)
 
@@ -55,7 +61,7 @@
                   '(#xAC00 . #xD7A3)
                   (font-spec
                    :family "Noto Sans CJK KR"
-                   :height 100
+                   :height 110
                    :weight 'light
                    :width 'normal))
 
@@ -75,8 +81,9 @@
 (req-package twittering-mode
              :config
              (setq twittering-use-master-password t)
-             (setq twittering-private-info-file "~/.emacs.d/twittering-mode.gpg")
-             (load "~/.emacs.d/twittering-official-app.el"))
+             (setq twittering-private-info-file (concat emacs-home
+                                                        "/twittering-mode.gpg"))
+             (load (concat emacs-home "/twittering-official-app.el")))
 
 ;;(req-package evernote-mode
 ;;             :config
@@ -187,6 +194,9 @@
 (setq js-doc-url "")
 (setq js-doc-license "")
 
+;;Proof General
+(require 'proof-site)
+
 ;;common configs
 ;; Tab is evil.
 (setq-default indent-tabs-mode nil)
@@ -214,3 +224,15 @@
 ;;(autoload 'php-mode "php-mode" "Major mode for editing php code." t)
 ;;(add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
 ;;(add-to-list 'auto-mode-alist '("\\.inc$" . php-mode))
+
+;; Theme
+
+(setq frame-background-mode 'dark)
+(load-theme 'solarized t)
+(enable-theme 'solarized)
+
+(add-hook 'after-make-frame-functions
+          (lambda (frame)
+            (if (display-graphic-p frame)
+                (progn (set-frame-parameter frame 'background-mode 'dark)
+                 (enable-theme 'solarized)))))
