@@ -52,17 +52,17 @@
 (set-face-attribute 'default nil
                     :family "Source Code Pro"
                     :height 110
-                    :weight 'light
+                    :weight 'normal
                     :width 'normal)
 
-;;Korean fallback - Noto Sans CJK KR
+;;Hangul fallback - Noto Sans CJK KR
 ;;TODO: Find way to emulate fixedwidth
 (set-fontset-font "fontset-default"
                   '(#xAC00 . #xD7A3)
                   (font-spec
                    :family "Noto Sans CJK KR"
                    :height 110
-                   :weight 'light
+                   :weight 'normal
                    :width 'normal))
 
 ;;Tengwar fallback
