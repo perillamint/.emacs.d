@@ -15,7 +15,7 @@
 
 ;;Theme
 (add-to-list 'custom-theme-load-path (concat emacs-home
-                                             "/emacs-color-theme-solarized"))
+                                             "/emacs-open-color-theme"))
 
 ;;Get CAcerts file and set tls-program
 (let ((trustfile
@@ -228,11 +228,11 @@
 ;; Theme
 
 (setq frame-background-mode 'dark)
-(load-theme 'solarized t)
-(enable-theme 'solarized)
+(load-theme 'open-color t)
+(enable-theme 'open-color)
 
 (add-hook 'after-make-frame-functions
           (lambda (frame)
             (if (display-graphic-p frame)
                 (progn (set-frame-parameter frame 'background-mode 'dark)
-                 (enable-theme 'solarized)))))
+                 (enable-theme 'open-color)))))
