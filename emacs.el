@@ -78,6 +78,8 @@
              :config
              (evil-mode 1))
 
+(req-package undo-tree)
+
 (req-package twittering-mode
              :config
              (setq twittering-use-master-password t)
@@ -209,14 +211,12 @@
 (setq ac-ignore-case nil)
 
 ;;Key bindings
-(global-unset-key (kbd "M-h"))
-(global-unset-key (kbd "M-j"))
-(global-unset-key (kbd "M-k"))
-(global-unset-key (kbd "M-l"))
-(global-set-key (kbd "M-h") 'backward-char)
-(global-set-key (kbd "M-j") 'next-line)
-(global-set-key (kbd "M-k") 'previous-line)
-(global-set-key (kbd "M-l") 'forward-char)
+(req-package 'bind-key)
+(bind-keys*
+ ("M-h" . backward-char)
+ ("M-j" . next-line)
+ ("M-k" . previous-line)
+ ("M-l" . forward-char))
 
 ;;Custom compile command.
 (global-set-key (kbd "<f5>") 'compile)
