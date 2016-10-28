@@ -1,2 +1,2 @@
-(setq twittering-oauth-consumer-key "iAtYJ4HpUVfIUoNnif1DA")
-(setq twittering-oauth-consumer-secret "172fOpzuZoYzNYaU3mMYvE8m8MEyLbztOdbrUolU")
+(setq twittering-oauth-consumer-key "yN3DUNVO0Me63IAQdhTfCA")
+(setq twittering-oauth-consumer-secret "c768oTKdzAjIYCmpSNIdZbGaG0t6rOhSFQP0S5uC79g")
