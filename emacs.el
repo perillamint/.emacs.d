@@ -123,6 +123,12 @@
 
 (req-package js2-mode)
 
+;; For typescript
+(req-package tss
+  :require typescript
+  :config
+  (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-mode)))
+
 (req-package web-mode
              :config
              (add-to-list 'auto-mode-alist '("\\.php$" . web-mode))
@@ -176,6 +182,9 @@
 
 ;;Javascript flycheck lint
 (add-hook 'js-mode-hook
+          (lambda () (flycheck-mode t)))
+
+(add-hook 'typescript-mode-hook
           (lambda () (flycheck-mode t)))
 
 (require 'js-doc)
