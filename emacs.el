@@ -30,9 +30,10 @@
                  (if (eq window-system 'w32) ".exe" "") trustfile))))
 
 (require 'package)
-(package-initialize)
 (add-to-list 'package-archives '("marmalade" . "https://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+
+(package-initialize)
 
 ;;Disable splash
 (setq inhibit-splash-screen t)
