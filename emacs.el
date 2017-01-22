@@ -166,6 +166,11 @@
 ;;LFE mode
 (require 'lfe-start)
 
+;;Elixir Alchemist mode
+(req-package alchemist)
+
+(req-package flycheck-elixir)
+
 ;;Built-in modules
 
 ;;html-mode
