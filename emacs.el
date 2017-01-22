@@ -167,7 +167,10 @@
 (require 'lfe-start)
 
 ;;Elixir Alchemist mode
-(req-package alchemist)
+(req-package alchemist
+  :require (company)
+  :config
+  (add-hook 'alchemist-mode-hook 'company-mode))
 
 (req-package flycheck-elixir)
 
