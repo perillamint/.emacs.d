@@ -154,6 +154,11 @@
   (add-to-list 'company-backends 'company-lua)
   (add-hook 'lua-mode-hook 'flymake-lua-load))
 
+(req-package yaml-mode
+  :require (flymake-yaml)
+  :config
+  (add-hook 'yaml-mode-hook 'flymake-yaml-load))
+
 (req-package auto-complete)
 
 (req-package yasnippet
