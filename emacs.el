@@ -47,24 +47,38 @@
 
 ;; Font setting
 ;; TODO: Add yethangul support.
-;; TODO: Add emoji support.
+(defun set-font (fontsz)
+  ;;Default font - Source Code Pro
+  (set-face-attribute 'default nil
+                      :family "Source Code Pro"
+                      :height fontsz
+                      :weight 'normal
+                      :width 'normal)
 
-;;Default font - Source Code Pro
-(set-face-attribute 'default nil
-                    :family "Source Code Pro"
-                    :height 110
-                    :weight 'normal
-                    :width 'normal)
+  ;;Hangul fallback - Noto Sans CJK KR
+  ;;TODO: Find way to emulate fixedwidth
+  (set-fontset-font "fontset-default"
+                    '(#xAC00 . #xD7A3)
+                    (font-spec
+                     :family "Noto Sans CJK KR"
+                     :height fontsz
+                     :weight 'normal
+                     :width 'normal))
 
-;;Hangul fallback - Noto Sans CJK KR
-;;TODO: Find way to emulate fixedwidth
-(set-fontset-font "fontset-default"
-                  '(#xAC00 . #xD7A3)
-                  (font-spec
-                   :family "Noto Sans CJK KR"
-                   :height 110
-                   :weight 'normal
+  (let (emojifont '(font-spec
+                   :family "Noto Emoji"
+                   :height: fontsz
+                   :weight: 'normal
                    :width 'normal))
+    (set-fontset-font "fontset-default"
+                      '(#x1F300 . #x1F5FF)
+                      emojifont)
+    (set-fontset-font "fontset-default"
+                      '(#x1F900 . #x1F9FF)
+                      emojifont)))
+
+(set-font 110)
+
 
 ;;Tengwar fallback
 
@@ -98,28 +112,28 @@
 
 (req-package whitespace)
 
-(req-package tabbar-ruler
-             :require cl
-             :config
-             (setq tabbar-ruler-global-tabbar t)
-             (setq tabbar-ruler-global-ruler t)
-             (setq tabbar-ruler-movement-timer-delay 0.1)
-
-             (defun my-tabbar-buffer-groups ()
-               "Custom tabbar groups"
-               (list
-                (cond
-                 ((string-equal "*" (substring (buffer-name) 0 1)) "emacs")
-                 ((eq major-mode 'emacs-lisp-byte-code-mode) "emacs")
-                 ((eq major-mode 'dired-mode) "dired")
-                 ((eq major-mode 'html-mode) "web")
-                 ((eq major-mode 'javascript-mode) "web")
-                 ((eq major-mode 'js-mode) "web")
-                 ((eq major-mode 'js2-mode) "web")
-                 ((eq major-mode 'rust-mode) "rust")
-                 (t "others"))))
-
-             (setq tabbar-buffer-groups-function 'my-tabbar-buffer-groups))
+;;(req-package tabbar-ruler
+;;             :require cl
+;;             :config
+;;             (setq tabbar-ruler-global-tabbar t)
+;;             (setq tabbar-ruler-global-ruler t)
+;;             (setq tabbar-ruler-movement-timer-delay 0.1)
+;;
+;;             (defun my-tabbar-buffer-groups ()
+;;               "Custom tabbar groups"
+;;               (list
+;;                (cond
+;;                 ((string-equal "*" (substring (buffer-name) 0 1)) "emacs")
+;;                 ((eq major-mode 'emacs-lisp-byte-code-mode) "emacs")
+;;                 ((eq major-mode 'dired-mode) "dired")
+;;                 ((eq major-mode 'html-mode) "web")
+;;                 ((eq major-mode 'javascript-mode) "web")
+;;                 ((eq major-mode 'js-mode) "web")
+;;                 ((eq major-mode 'js2-mode) "web")
+;;                 ((eq major-mode 'rust-mode) "rust")
+;;                 (t "others"))))
+;;
+;;             (setq tabbar-buffer-groups-function 'my-tabbar-buffer-groups))
 
 (req-package js2-mode)
 
