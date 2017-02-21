@@ -165,6 +165,10 @@
 
 (req-package-finish)
 
+;;;; Package installation completed.
+;;;; Byte compile everything
+;;(byte-recompile-directory (expand-file-name emacs-home) 0)
+
 ;;LFE mode
 (require 'lfe-start)
 
