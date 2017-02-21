@@ -144,6 +144,9 @@
   :config
   (add-hook 'yaml-mode-hook 'flymake-yaml-load))
 
+(req-package flymake-yaml
+  :require (flycheck))
+
 (req-package auto-complete)
 
 (req-package yasnippet
