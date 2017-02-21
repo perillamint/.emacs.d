@@ -79,28 +79,28 @@
 
 (req-package whitespace)
 
-;;(req-package tabbar-ruler
-;;             :require cl
-;;             :config
-;;             (setq tabbar-ruler-global-tabbar t)
-;;             (setq tabbar-ruler-global-ruler t)
-;;             (setq tabbar-ruler-movement-timer-delay 0.1)
-;;
-;;             (defun my-tabbar-buffer-groups ()
-;;               "Custom tabbar groups"
-;;               (list
-;;                (cond
-;;                 ((string-equal "*" (substring (buffer-name) 0 1)) "emacs")
-;;                 ((eq major-mode 'emacs-lisp-byte-code-mode) "emacs")
-;;                 ((eq major-mode 'dired-mode) "dired")
-;;                 ((eq major-mode 'html-mode) "web")
-;;                 ((eq major-mode 'javascript-mode) "web")
-;;                 ((eq major-mode 'js-mode) "web")
-;;                 ((eq major-mode 'js2-mode) "web")
-;;                 ((eq major-mode 'rust-mode) "rust")
-;;                 (t "others"))))
-;;
-;;             (setq tabbar-buffer-groups-function 'my-tabbar-buffer-groups))
+(req-package tabbar-ruler
+             :require cl
+             :config
+             (setq tabbar-ruler-global-tabbar t)
+             (setq tabbar-ruler-global-ruler t)
+             (setq tabbar-ruler-movement-timer-delay 0.1)
+
+             (defun my-tabbar-buffer-groups ()
+               "Custom tabbar groups"
+               (list
+                (cond
+                 ((string-equal "*" (substring (buffer-name) 0 1)) "emacs")
+                 ((eq major-mode 'emacs-lisp-byte-code-mode) "emacs")
+                 ((eq major-mode 'dired-mode) "dired")
+                 ((eq major-mode 'html-mode) "web")
+                 ((eq major-mode 'javascript-mode) "web")
+                 ((eq major-mode 'js-mode) "web")
+                 ((eq major-mode 'js2-mode) "web")
+                 ((eq major-mode 'rust-mode) "rust")
+                 (t "others"))))
+
+             (setq tabbar-buffer-groups-function 'my-tabbar-buffer-groups))
 
 (req-package js2-mode)
 
