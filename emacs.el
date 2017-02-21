@@ -157,7 +157,8 @@
   :config
   (add-hook 'alchemist-mode-hook 'company-mode))
 
-(req-package flycheck-elixir)
+(req-package flycheck-elixir
+  :require (flycheck))
 
 (req-package-finish)
 
