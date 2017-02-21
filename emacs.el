@@ -55,10 +55,14 @@
 ;;Download all packages from firstrun
 (setq use-package-always-ensure t)
 
-;;Packages
+;; Packages
 (req-package evil
              :config
              (evil-mode 1))
+
+(req-package bind-key
+  :config
+  (load (concat emacs-home "/keybinding.el")))
 
 (req-package undo-tree)
 
@@ -147,11 +151,6 @@
   (yas/initialize)
   (add-to-list 'ac-sources 'ac-source-yasnippet))
 
-(req-package-finish)
-
-;;LFE mode
-(require 'lfe-start)
-
 ;;Elixir Alchemist mode
 (req-package alchemist
   :require (company)
@@ -159,6 +158,12 @@
   (add-hook 'alchemist-mode-hook 'company-mode))
 
 (req-package flycheck-elixir)
+
+(req-package-finish)
+
+;;LFE mode
+(require 'lfe-start)
+
 
 ;;Built-in modules
 
@@ -213,14 +218,6 @@
 (global-auto-complete-mode t)
 (setq ac-auto-start 2)
 (setq ac-ignore-case nil)
-
-;;Key bindings
-(req-package 'bind-key)
-(bind-keys*
- ("M-h" . backward-char)
- ("M-j" . next-line)
- ("M-k" . previous-line)
- ("M-l" . forward-char))
 
 ;;Custom compile command.
 (global-set-key (kbd "<f5>") 'compile)
