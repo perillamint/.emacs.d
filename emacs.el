@@ -57,14 +57,21 @@
 
 ;; Packages
 (req-package evil
-             :config
-             (evil-mode 1))
+  :config
+  (evil-define-key 'normal neotree-mode-map (kbd "TAB") 'neotree-enter)
+  (evil-define-key 'normal neotree-mode-map (kbd "SPC") 'neotree-enter)
+  (evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
+  (evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter)
+  (evil-mode 1))
 
 (req-package bind-key
   :config
   (load (concat emacs-home "/keybinding.el")))
 
 (req-package undo-tree)
+(req-package neotree
+  :config
+  (setq neo-show-hidden-files t))
 
 (req-package twittering-mode
              :config
@@ -242,6 +249,7 @@
 
 (add-hook 'after-make-frame-functions
           (lambda (frame)
+            ;;(neotree)
             (if (display-graphic-p frame)
                 (progn (set-frame-parameter frame 'background-mode 'dark)
                  (enable-theme 'open-color)))))
