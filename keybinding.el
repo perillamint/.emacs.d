@@ -3,4 +3,5 @@
  ("M-h" . backward-char)
  ("M-j" . next-line)
  ("M-k" . previous-line)
- ("M-l" . forward-char))
+ ("M-l" . forward-char)
+ ("<f8>" . neotree-toggle))
