@@ -106,6 +106,7 @@
                  ((eq major-mode 'dired-mode) "dired")
                  ((eq major-mode 'html-mode) "web")
                  ((eq major-mode 'vue-mode) "web")
+                 ((eq major-mode 'vue-html-mode) "web")
                  ((eq major-mode 'javascript-mode) "web")
                  ((eq major-mode 'js-mode) "web")
                  ((eq major-mode 'js2-mode) "web")
@@ -114,7 +115,16 @@
 
              (setq tabbar-buffer-groups-function 'my-tabbar-buffer-groups))
 
-(req-package vue-mode)
+(req-package vue-html-mode
+  :require vue-mode
+  :config (add-to-list 'auto-mode-alist '("\\.vue$" . vue-html-mode)))
+
+(req-package vue-mode
+  :require ac-html)
+
+(req-package company-web
+  :require company)
+
 (req-package js2-mode)
 
 ;; For typescript
@@ -137,7 +147,11 @@
 
 (req-package racer)
 
-(req-package company)
+(req-package company
+  :config
+  (add-hook 'after-init-hook 'global-company-mode)
+  (global-set-key (kbd "TAB") #'company-indent-or-complete-common))
+
 (req-package flycheck)
 (req-package flycheck-rust
              :require (flycheck rust-mode racer))
