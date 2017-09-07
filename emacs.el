@@ -105,6 +105,7 @@
                  ((eq major-mode 'emacs-lisp-byte-code-mode) "emacs")
                  ((eq major-mode 'dired-mode) "dired")
                  ((eq major-mode 'html-mode) "web")
+                 ((eq major-mode 'vue-mode) "web")
                  ((eq major-mode 'javascript-mode) "web")
                  ((eq major-mode 'js-mode) "web")
                  ((eq major-mode 'js2-mode) "web")
@@ -113,6 +114,7 @@
 
              (setq tabbar-buffer-groups-function 'my-tabbar-buffer-groups))
 
+(req-package vue-mode)
 (req-package js2-mode)
 
 ;; For typescript
