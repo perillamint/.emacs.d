@@ -50,7 +50,7 @@
 (set-font 110)
 
 ;;Workspace-detection function -- Office machine is Nimrodel.
-(defun is-office-machine () (string= system-name "nimrodel.gentoo.moe"))
+(defun is-office-machine () (string= (system-name) "nimrodel.gentoo.moe"))
 
 ;;Download all packages from firstrun
 (setq use-package-always-ensure t)
@@ -163,9 +163,11 @@
   (yas/initialize)
   (add-to-list 'ac-sources 'ac-source-yasnippet))
 
-;;Elixir Alchemist mode
+;;Elixir-mode and Alchemist-mode
+(req-package elixir-mode)
+
 (req-package alchemist
-  :require (company)
+  :require (company elixir-mode)
   :config
   (add-hook 'alchemist-mode-hook 'company-mode))
 
